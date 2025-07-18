@@ -52,18 +52,6 @@ Key features used in the model:
 
 ---
 
-## ⚙️ Installation
-
-```bash
-git clone https://github.com/swe-dipu/Churn-Prediction-ANN.git
-cd Churn-Prediction-ANN
-python3 -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
----
-
 ## 🧠 Model Training (Optional)
 
 To retrain the ANN model:
@@ -115,13 +103,6 @@ You can enter customer information to check churn probability.
   - Accuracy Score
 
 Model performance is comparable to similar ANN-based churn predictors.
-
----
-
-## 📝 Acknowledgments
-
-Special thanks to the open-source community for ANN churn prediction inspirations, especially:
-- [Artificial-Neural-Network-Streamlit by antoninichiq](https://github.com/antoninichiq/Artificial-Neural-Network-Streamlit)
 
 ---
 
