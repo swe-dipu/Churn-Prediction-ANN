@@ -1,103 +1,141 @@
-Churn‑Prediction‑ANN 🚀
-A Streamlit-powered AI app that uses an Artificial Neural Network (ANN) to predict customer churn. Enter customer data and instantly see the probability they may leave—helping businesses take proactive retention measures.
 
-🎯 Project Overview
-Goal: Build a classification model to identify customers at risk of churn.
+# Churn‑Prediction‑ANN 🚀
 
-Approach: Train a neural network (via Keras/TensorFlow) on historical customer features, then deploy the model with Streamlit for interactive use.
+A **Streamlit-powered AI app** that uses an Artificial Neural Network (ANN) to predict customer churn. Enter customer data and instantly see the probability they may leave — helping businesses take proactive retention measures.
 
-Use Case: Supports timely marketing or loyalty interventions.
+---
 
-📁 Project Structure
-bash
-Copy
-Edit
+## 🎯 Project Overview
+
+- **Goal**: Build a classification model to identify customers at risk of churn.
+- **Approach**: Train a neural network (via Keras/TensorFlow) on historical customer features, then deploy the model with Streamlit for interactive use.
+- **Use Case**: Supports timely marketing or loyalty interventions.
+
+---
+
+## 📁 Project Structure
+
+```
 Churn‑Prediction‑ANN/
 ├── app.py                # Streamlit interface + model loader
-├── model.h5              # Pretrained ANN
+├── model.h5              # Pretrained ANN model
 ├── scaler.pkl            # Preprocessing scaler object
 ├── encoder_gender.pkl    # Encoder for 'Gender'
 ├── encoder_geo.pkl       # Encoder for 'Geography'
 ├── Churn_Modelling.csv   # Original dataset
-├── notebooks/            # EDA, feature engineering & training code
+├── notebooks/            # Jupyter notebook for EDA & model training
 │   └── train.ipynb
-├── requirements.txt      # Required Python packages
-└── README.md             # This file
-📥 Dataset
-Original dataset: Churn_Modelling.csv (from Kaggle’s Bank Customer dataset), with these key features:
+├── requirements.txt      # Python dependencies
+└── README.md             # Project documentation (this file)
+```
 
-CreditScore, Geography, Gender, Age, Tenure, Balance, NumOfProducts, HasCrCard, IsActiveMember, EstimatedSalary, Exited (target)
+---
 
-⚙️ Installation
-bash
-Copy
-Edit
+## 📥 Dataset
+
+The dataset used is `Churn_Modelling.csv` sourced from Kaggle's **Bank Customer Churn** dataset.
+
+Key features used in the model:
+
+- `CreditScore`
+- `Geography`
+- `Gender`
+- `Age`
+- `Tenure`
+- `Balance`
+- `NumOfProducts`
+- `HasCrCard`
+- `IsActiveMember`
+- `EstimatedSalary`
+
+**Target Variable**: `Exited` (1 = Customer churned, 0 = Customer retained)
+
+---
+
+## ⚙️ Installation
+
+```bash
 git clone https://github.com/swe-dipu/Churn-Prediction-ANN.git
 cd Churn-Prediction-ANN
 python3 -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-🧠 Model Training (Optional)
-To retrain the model:
+```
 
-Open notebooks/train.ipynb
+---
 
-Perform data preprocessing:
+## 🧠 Model Training (Optional)
 
-Label/one-hot encode categorical features
+To retrain the ANN model:
 
-Scale numeric features
+1. Open `notebooks/train.ipynb`
+2. Perform data preprocessing:
+   - Encode categorical features (e.g., Gender, Geography)
+   - Scale numerical features using StandardScaler
+3. Build and compile the ANN model using Keras
+4. Train the model on the dataset with validation
+5. Save the trained model and preprocessing objects:
+   ```python
+   classifier.save('model.h5')
+   pickle.dump(scaler, open('scaler.pkl', 'wb'))
+   pickle.dump(encoder_gender, open('encoder_gender.pkl', 'wb'))
+   pickle.dump(encoder_geo, open('encoder_geo.pkl', 'wb'))
+   ```
 
-Define and compile your ANN
+---
 
-Train with validation
+## 🚀 Launch the Streamlit App
 
-Evaluate and save:
-
-python
-Copy
-Edit
-classifier.save('model.h5')
-Serialize scaler and encoders using pickle.
-
-🚀 Launch the App
-bash
-Copy
-Edit
+```bash
 streamlit run app.py
-➡️ A local web interface will open — enter customer details and click Predict to see churn risk score.
+```
 
-🛠️ Technologies & Tools
-Python: Data munging with pandas, numpy
+The app will open in your default browser.  
+You can enter customer information to check churn probability.
 
-scikit-learn: Preprocessing & metrics
+---
 
-TensorFlow / Keras: ANN architecture, training & saving
+## 🛠️ Technologies & Tools Used
 
-Streamlit: Interactive app interface
+- **Python**: Core programming language
+- **pandas, numpy**: Data analysis and manipulation
+- **scikit-learn**: Preprocessing, model evaluation
+- **TensorFlow / Keras**: ANN modeling
+- **Streamlit**: Web app framework for machine learning
+- **pickle**: Model and scaler serialization
 
-Pickle: Model and preprocessing object serialization
+---
 
-📊 Results & Evaluation
-Achieves ~85–88% accuracy on hold-out test data.
+## 📊 Results & Model Evaluation
 
-Performance metrics (in notebook): precision, recall, F1-score, confusion matrix.
+- Achieved **85–88% accuracy** on the validation dataset.
+- Evaluation metrics covered in `train.ipynb` include:
+  - Confusion Matrix
+  - Precision, Recall, F1-Score
+  - Accuracy Score
 
-Comparable to similar projects, e.g. Artificial-Neural-Network-Streamlit which also reached ~87% accuracy.
+Model performance is comparable to similar ANN-based churn predictors.
 
-📝 Acknowledgments
-Inspired by community implementations such as Antoninichiq’s Streamlit-ANN churn predictor:
-https://github.com/antoninichiq/Artificial-Neural-Network-Streamlit
+---
 
-🧩 Future Enhancements
-Add ROC-AUC curve and probability threshold tuning.
+## 📝 Acknowledgments
 
-Include batch predictions support (CSV file upload).
+Special thanks to the open-source community for ANN churn prediction inspirations, especially:
+- [Artificial-Neural-Network-Streamlit by antoninichiq](https://github.com/antoninichiq/Artificial-Neural-Network-Streamlit)
 
-Containerize with Docker.
+---
 
-Improve UI with more explanation and data validation.
+## 🧩 Future Enhancements
+
+- Add **ROC-AUC curve** visualization
+- Support **batch predictions** via CSV upload
+- Deploy with **Docker** for easier scalability
+- Improve UI/UX with additional user feedback and validations
 
 
-📜 License
-This project is released under the MIT License. See LICENSE for details.
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for details.
